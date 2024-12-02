@@ -1,6 +1,9 @@
 package com.ahmetselmanyildirim.helloworld.controllers;
 
+import com.ahmetselmanyildirim.helloworld.model.User;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/2")
@@ -32,5 +35,24 @@ public class MyController {
     public String getMyMessage(@RequestParam(name = "message", required = false, defaultValue = "default message") String message)  {
         return "Your message is: "+ message;
     }
+
+    // @RequestBody -> Kullanıcıdan object şeklinde veri alabildiğimiz bir anotasyon.
+    /*
+        User sınıfını destekleyecek bir JSON nesnesi ister
+    */
+    @PostMapping("/user")
+    public User saveUser(@RequestBody User user){
+        System.out.println("User saved!");
+        user.setPassword("");
+        return user;
+    }
+    @PostMapping("/users")
+    public List<User> saveAllUser(@RequestBody List<User> users){
+        System.out.println("User saved!");
+        users.forEach((u)->u.setPassword(""));
+        return users;
+    }
+
+
 
 }
