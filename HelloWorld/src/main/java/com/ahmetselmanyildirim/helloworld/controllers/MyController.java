@@ -53,6 +53,11 @@ public class MyController {
         return users;
     }
 
+    // @RequestHeader -> Header'dan veri alınmasını sağlar
+    @GetMapping("/header")
+    public String getHeader(@RequestHeader("My-Header") String header){
+        return "Your header is: "+ header;
+    }
 
 
 }
